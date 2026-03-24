@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c1qfjem0ho11w"]
+
+[ext_resource type="Script" uid="uid://dioaqsc5mq2tt" path="res://game/enemy_ball.gd" id="1_xaxo0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkn7c"]
+radius = 20.0
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=56700393]
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_xaxo0")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=952423694]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_mkn7c")
+debug_color = Color(0.7144038, 0, 0.23299885, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

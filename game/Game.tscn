@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://boex0liqn8ilu"]
+
+[ext_resource type="Script" uid="uid://bhjg3h7jioyjm" path="res://game/game.gd" id="1_fafdd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
+size = Vector2(775, 26)
+
+[node name="Game" type="Node2D" unique_id=275367041]
+script = ExtResource("1_fafdd")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1997338142]
+
+[node name="WallL" type="StaticBody2D" parent="Walls" unique_id=649930291]
+position = Vector2(1762, 1862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallL" unique_id=369621230]
+position = Vector2(-1269, -1305)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_3ibn1")
+
+[node name="Bottom" type="StaticBody2D" parent="Walls" unique_id=1932400119]
+position = Vector2(881, 931)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom" unique_id=157315551]
+position = Vector2(-2.5, 3)
+shape = SubResource("RectangleShape2D_3ibn1")
+
+[node name="WallR" type="StaticBody2D" parent="Walls" unique_id=624564601]
+position = Vector2(2518, 1862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallR" unique_id=1412958745]
+position = Vector2(-1269, -1305)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_3ibn1")
+
+[node name="Balls" type="Node2D" parent="." unique_id=657216197]
+
+[node name="Consumable" type="Label" parent="." unique_id=1571869060]
+offset_left = 31.0
+offset_top = 655.0
+offset_right = 448.0
+offset_bottom = 826.0
+theme_override_font_sizes/font_size = 40
+text = "Consumable (Press C to use at mouse cursor)"
+autowrap_mode = 2
+
+[node name="Consumable2" type="Label" parent="." unique_id=217787962]
+offset_left = 40.0
+offset_top = 822.0
+offset_right = 457.0
+offset_bottom = 993.0
+theme_override_font_sizes/font_size = 40
+text = "Empty"
+autowrap_mode = 2
