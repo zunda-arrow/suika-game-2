@@ -1,27 +1,23 @@
-extends RigidBody2D
+extends Ball
 
-class_name Ball
+class_name PlayerBall
 
 signal on_merge(size: int)
 
-var is_ball = true
-var size = 0
-var time_alive = 0
-
 func _ready() -> void:
-	add_to_group("balls")
+	add_to_group("player-balls")
 	%Collision.shape = %Collision.shape.duplicate()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	for body in self.get_colliding_bodies():
 		collide_with_body(body)
 
-	time_alive += delta
+	time_alive+= delta
 
 
 func collide_with_body(body: PhysicsBody2D):
-	if not body.is_in_group("balls"):
+	if not body.is_in_group("player-balls"):
 		return
 	if body.size != size:
 		return
@@ -30,7 +26,7 @@ func collide_with_body(body: PhysicsBody2D):
 
 	position = new_pos
 	size += 1
-	%Collision.shape.radius = 20 * (1 + (float(size)))
+	%Collision.shape.radius = get_radius()
 
 	body.queue_free()
 	on_merge.emit(size)

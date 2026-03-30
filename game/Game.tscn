@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bhjg3h7jioyjm" path="res://game/game.gd" id="1_fafdd"]
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
+[ext_resource type="Texture2D" uid="uid://b7u5dix5nhiii" path="res://icon.svg" id="3_m71xk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m71xk"]
+blend_mode = 1
 
 [node name="Game" type="Node2D" unique_id=275367041]
 script = ExtResource("1_fafdd")
@@ -57,3 +61,9 @@ autowrap_mode = 2
 [node name="TurnQueue" parent="." unique_id=1915177195 instance=ExtResource("2_qdja7")]
 unique_name_in_owner = true
 position = Vector2(1427, 179)
+
+[node name="Pointer" type="Sprite2D" parent="." unique_id=1384657455]
+material = SubResource("CanvasItemMaterial_m71xk")
+position = Vector2(9.25, 8.025921)
+scale = Vector2(0.26171875, 0.25821748)
+texture = ExtResource("3_m71xk")
