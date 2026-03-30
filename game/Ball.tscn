@@ -14,4 +14,6 @@ script = ExtResource("1_jra4e")
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_mkn7c")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1474750359]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
