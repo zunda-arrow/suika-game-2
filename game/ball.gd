@@ -6,6 +6,7 @@ signal on_merge(size: int)
 
 var is_ball = true
 var size = 0
+var time_alive = 0
 
 func _ready() -> void:
 	add_to_group("balls")
@@ -15,6 +16,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for body in self.get_colliding_bodies():
 		collide_with_body(body)
+
+	time_alive += delta
 
 
 func collide_with_body(body: PhysicsBody2D):

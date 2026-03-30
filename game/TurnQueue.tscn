@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bx50nkr6ly8gl"]
+
+[ext_resource type="Script" uid="uid://b2436e56sskx0" path="res://game/TurnQueue.gd" id="1_c12v7"]
+
+[node name="EnemyQueue" type="Node2D" unique_id=1915177195]
+script = ExtResource("1_c12v7")
+
+[node name="EnemyQueue" type="Label" parent="." unique_id=725126249]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Hello!"

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://boex0liqn8ilu"]
 
 [ext_resource type="Script" uid="uid://bhjg3h7jioyjm" path="res://game/game.gd" id="1_fafdd"]
+[ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
@@ -52,3 +53,7 @@ offset_bottom = 993.0
 theme_override_font_sizes/font_size = 40
 text = "Empty"
 autowrap_mode = 2
+
+[node name="TurnQueue" parent="." unique_id=1915177195 instance=ExtResource("2_qdja7")]
+unique_name_in_owner = true
+position = Vector2(1427, 179)
