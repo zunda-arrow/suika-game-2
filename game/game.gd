@@ -60,7 +60,7 @@ func _process(_delta: float) -> void:
 	var should_end_turn = true
 	if waiting_for_turn_to_end:
 		for b: RigidBody2D in $Balls.get_children():
-			if b.time_alive < .2:
+			if b.time_alive < .6:
 				should_end_turn = false
 				break
 			

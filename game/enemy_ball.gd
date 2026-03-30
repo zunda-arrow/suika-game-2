@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_to_group("enemy-ball")
 	%Collision.shape = %Collision.shape.duplicate()
 	
-	size = randi_range(1, 2)
+	size = randi_range(2, 3)
 	%Collision.shape.radius = 20 * (1 + (float(size)))
 
 func damage(n):
