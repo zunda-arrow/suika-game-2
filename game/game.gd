@@ -18,6 +18,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
 		if turn_queue[0] != EnemyQueueOptions.Player:
 			return
+		if not waiting_for_turn_to_end:
+			return
 
 		waiting_for_turn_to_end = true
 		turn_queue.pop_at(0)
