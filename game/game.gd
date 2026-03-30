@@ -123,10 +123,7 @@ func position_ball_marker():
 	if highest_ball != null:
 		radius = highest_ball.get_radius()
 		highest_pos = highest_ball.position
-	
-	print("here") 
-	
-	
+
 	var x = get_local_mouse_position().x
 	var y = (radius ** 2 - (get_local_mouse_position().x - highest_pos.x) ** 2) ** .5
 	
