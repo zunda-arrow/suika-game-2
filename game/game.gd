@@ -7,10 +7,10 @@ var enemies = []
 var turn_queue = []
 var turn_number = 1
 
-var waiting_for_turn_to_end = false
+var waiting_for_turn_to_end = true
 
 func _ready() -> void:
-	for i in range(4):
+	for i in range(3):
 		end_turn()
 
 
@@ -18,11 +18,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
 		if turn_queue[0] != EnemyQueueOptions.Player:
 			return
-		if not waiting_for_turn_to_end:
+		if waiting_for_turn_to_end:
 			return
 
 		waiting_for_turn_to_end = true
 		turn_queue.pop_at(0)
+		%TurnQueue.dispay_turns(turn_queue)
 		
 		var x = get_global_mouse_position().x
 		if x < 550:
@@ -83,6 +84,7 @@ func during_turn():
 	if next == EnemyQueueOptions.Eneny:
 		turn_queue.pop_at(0)
 		spawn_enemy()
+		%TurnQueue.dispay_turns(turn_queue)
 		waiting_for_turn_to_end = true
 
 func end_turn():
