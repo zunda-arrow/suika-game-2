@@ -13,6 +13,15 @@ blend_mode = 1
 [node name="Game" type="Node2D" unique_id=275367041]
 script = ExtResource("1_fafdd")
 
+[node name="Score" type="Label" parent="." unique_id=1756049960]
+unique_name_in_owner = true
+offset_left = 131.0
+offset_top = 77.0
+offset_right = 216.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 32
+text = "Score"
+
 [node name="Walls" type="Node2D" parent="." unique_id=1997338142]
 
 [node name="WallL" type="StaticBody2D" parent="Walls" unique_id=649930291]

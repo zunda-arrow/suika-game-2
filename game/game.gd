@@ -7,6 +7,13 @@ var enemies = []
 var turn_queue = []
 var turn_number = 1
 
+var score: int:
+	set(val):
+		score = val
+		%Score.text = "Score:" + str(val)
+	get():
+		return score
+
 var waiting_for_turn_to_end = true
 
 func _ready() -> void:
@@ -33,11 +40,12 @@ func _input(event: InputEvent) -> void:
 		
 		var y = 100
 		
-		var b: Ball = ball.instantiate()
+		var b: PlayerBall = ball.instantiate()
 		$Balls.add_child(b)
 		b.position = Vector2(x, y)
-		
-		b.on_merge.connect(on_merge)
+		b.on_merge.connect(func(size):
+			on_merge(b, size)
+		)
 
 
 func spawn_enemy():
@@ -50,14 +58,30 @@ func spawn_enemy():
 	
 	enemies.push_back(b)
 
-func on_merge(size):
+func on_merge(ball, size):
 	if len(enemies) == 0:
 		return
-	var i = range(len(enemies)).pick_random()
-	enemies[i].damage(1)
 
-	if enemies[i].size < 0:
-		enemies.remove_at(i)
+	score += 15 + (size - 1) * 5
+
+	var closest = 0
+	
+	for i in range(len(enemies)):
+		var d1 = (enemies[closest].position - ball.position).length()
+		var d2 = (enemies[i].position - ball.position).length()
+	
+		if d2 < d1:
+			closest = i
+	
+	enemies[closest].damage(1)
+	score += 5
+
+	if enemies[closest].size < 0:
+		enemies[closest].queue_free()
+		enemies.pop_at(closest)
+		
+		
+
 
 func _process(_delta: float) -> void:
 	position_ball_marker()
