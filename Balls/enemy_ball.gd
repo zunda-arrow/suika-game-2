@@ -9,8 +9,6 @@ func _ready() -> void:
 	add_to_group("enemy-ball")
 	
 	size = randi_range(3, 4)
-	%Collision.shape.radius = get_radius()
 
 func damage(n):
 	size -= n
-	%Collision.shape.radius = get_radius()

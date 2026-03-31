@@ -8,7 +8,7 @@ var size: int:
 	set(val):
 		size = val
 		%Collision.shape.radius = get_radius()
-
+		
 var time_alive = 0
 
 func _ready() -> void:
