@@ -2,7 +2,13 @@ extends RigidBody2D
 class_name Ball
 
 var is_ball = true
-var size = 0
+var size: int:
+	get():
+		return size
+	set(val):
+		size = val
+		%Collision.shape.radius = get_radius()
+
 var time_alive = 0
 
 func _ready() -> void:

@@ -23,13 +23,17 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
-		if turn_queue[0] != EnemyQueueOptions.Player:
+		if turn_queue[0] not in [
+			TurnQueueOptions.Fruit0,
+			TurnQueueOptions.Fruit1,
+		]:
 			return
+
 		if waiting_for_turn_to_end:
 			return
 
 		waiting_for_turn_to_end = true
-		turn_queue.pop_at(0)
+		var fruit = turn_queue.pop_at(0)
 		%TurnQueue.dispay_turns(turn_queue)
 		
 		var x = get_global_mouse_position().x
@@ -46,7 +50,11 @@ func _input(event: InputEvent) -> void:
 		b.on_merge.connect(func(size):
 			on_merge(b, size)
 		)
-
+		
+		if fruit == TurnQueueOptions.Fruit0:
+			b.size = 0
+		if fruit == TurnQueueOptions.Fruit1:
+			b.size = 1
 
 func spawn_enemy():
 	var x = randi_range(550, 1200)
@@ -58,7 +66,7 @@ func spawn_enemy():
 	
 	enemies.push_back(b)
 
-func on_merge(ball, size):
+func on_merge(b, size):
 	if len(enemies) == 0:
 		return
 
@@ -67,8 +75,8 @@ func on_merge(ball, size):
 	var closest = 0
 	
 	for i in range(len(enemies)):
-		var d1 = (enemies[closest].position - ball.position).length()
-		var d2 = (enemies[i].position - ball.position).length()
+		var d1 = (enemies[closest].position - b.position).length()
+		var d2 = (enemies[i].position - b.position).length()
 	
 		if d2 < d1:
 			closest = i
@@ -107,7 +115,7 @@ func during_turn():
 
 	var next = turn_queue[0]
 	
-	if next == EnemyQueueOptions.Eneny:
+	if next == TurnQueueOptions.Eneny:
 		turn_queue.pop_at(0)
 		spawn_enemy()
 		%TurnQueue.dispay_turns(turn_queue)
@@ -121,11 +129,16 @@ func end_turn():
 		add_player_to_queue()
 
 func add_new_enemy_to_queue():
-	turn_queue.push_back(EnemyQueueOptions.Eneny)
+	turn_queue.push_back(TurnQueueOptions.Eneny)
 	%TurnQueue.dispay_turns(turn_queue)
 
 func add_player_to_queue():
-	turn_queue.push_back(EnemyQueueOptions.Player)
+	var p = TurnQueueOptions.Fruit0
+	
+	if randi_range(0, 2) == 0:
+		p = TurnQueueOptions.Fruit1
+	
+	turn_queue.push_back(p)
 	%TurnQueue.dispay_turns(turn_queue)
 
 

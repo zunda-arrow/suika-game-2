@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EnemyQueueOptions="*uid://djphlqbmmtiru"
+TurnQueueOptions="*uid://djphlqbmmtiru"
 
 [display]
 

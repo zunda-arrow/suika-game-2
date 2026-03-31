@@ -5,6 +5,7 @@ class_name PlayerBall
 signal on_merge(size: int)
 
 func _ready() -> void:
+	super._ready()
 	add_to_group("player-balls")
 	%Collision.shape = %Collision.shape.duplicate()
 
@@ -26,8 +27,6 @@ func collide_with_body(body: PhysicsBody2D):
 
 	position = new_pos
 	size += 1
-	%Collision.shape.radius = get_radius()
 
 	body.queue_free()
 	on_merge.emit(size)
-	
