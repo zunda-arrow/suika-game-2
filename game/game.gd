@@ -6,7 +6,6 @@ var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 var enemies = []
 var turn_queue = []
 var turn_number = 1
-var next_enemy_pos = Vector2(0,0)
 
 var score: int:
 	set(val):
@@ -18,7 +17,6 @@ var score: int:
 var waiting_for_turn_to_end = true
 
 func _ready() -> void:
-	set_next_enemy_pos()
 	for i in range(3):
 		end_turn()
 
@@ -58,22 +56,15 @@ func _input(event: InputEvent) -> void:
 		if fruit == TurnQueueOptions.Fruit1:
 			b.size = 1
 
-func set_next_enemy_pos():
+func spawn_enemy():
 	var x = randi_range(550, 1200)
 	var y = 100
 	
-	
-	next_enemy_pos = Vector2(x, y)
-	%NextEnemy.position = next_enemy_pos
-	
-
-func spawn_enemy():
 	var b = enemy_ball.instantiate()
 	$Balls.add_child(b)
-	b.position = next_enemy_pos
+	b.position = Vector2(x, y)
 	
 	enemies.push_back(b)
-	set_next_enemy_pos()
 
 func on_merge(b, size):
 	if len(enemies) == 0:

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://boex0liqn8ilu"]
 
-[ext_resource type="Script" uid="uid://bhjg3h7jioyjm" path="res://game/game.gd" id="1_fafdd"]
+[ext_resource type="Script" uid="uid://cnf5udhk03rug" path="res://game/game.gd" id="1_fafdd"]
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
-[ext_resource type="Texture2D" uid="uid://b7u5dix5nhiii" path="res://icon.svg" id="3_m71xk"]
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_m71xk"]
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
@@ -80,6 +80,7 @@ texture = ExtResource("3_m71xk")
 
 [node name="NextEnemy" type="Sprite2D" parent="." unique_id=2063397246]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-151.80151, -147)
 scale = Vector2(0.26130652, 0.26130652)
 texture = ExtResource("4_i75et")
