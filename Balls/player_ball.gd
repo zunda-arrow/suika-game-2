@@ -15,6 +15,10 @@ func _physics_process(delta: float) -> void:
 
 	time_alive+= delta
 
+func flash():
+	$Sprite2D.show()
+	await get_tree().create_timer(.1).timeout
+	$Sprite2D.hide()
 
 func collide_with_body(body: PhysicsBody2D):
 	if not body.is_in_group("player-balls"):

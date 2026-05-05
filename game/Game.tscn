@@ -50,6 +50,8 @@ shape = SubResource("RectangleShape2D_3ibn1")
 
 [node name="Balls" type="Node2D" parent="." unique_id=657216197]
 
+[node name="EnemyBalls" type="Node2D" parent="." unique_id=846633806]
+
 [node name="Consumable" type="Label" parent="." unique_id=1571869060]
 offset_left = 31.0
 offset_top = 655.0

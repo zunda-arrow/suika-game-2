@@ -3,7 +3,6 @@ extends Node2D
 var ball = preload("res://Balls/PlayerBall.tscn")
 var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 
-var enemies = []
 var turn_queue = []
 var turn_number = 1
 
@@ -61,35 +60,56 @@ func spawn_enemy():
 	var y = 100
 	
 	var b = enemy_ball.instantiate()
-	$Balls.add_child(b)
+	$EnemyBalls.add_child(b)
 	b.position = Vector2(x, y)
-	
-	enemies.push_back(b)
 
-func on_merge(b, size):
+func on_merge(b: PlayerBall, size: int):
+	on_attack(b, size)
+	var has_attacked = [b]
+	
+	while true:
+		var balls = $Balls.get_children().filter(func(a):
+			return a not in has_attacked
+		)
+
+		if len(balls) == 0:
+			return
+		
+		var sort = func(a: PlayerBall, b: PlayerBall):
+			return b.position.distance_to(a.position) > b.position.distance_to(b.position)
+
+		balls.sort_custom(sort)
+		var ball = balls[0]
+
+		has_attacked.push_back(ball)
+
+		if ball == null:
+			continue
+		if ball == b:
+			continue
+		on_attack(ball, size)
+		
+		await get_tree().create_timer(.1).timeout
+
+func on_attack(b: PlayerBall, size: int):
+	b.flash()
+	
+	var enemies = $EnemyBalls.get_children()
+	
 	if len(enemies) == 0:
 		return
 
 	score += 15 + (size - 1) * 5
 
-	var closest = 0
+	var weakest = 0
 	
 	for i in range(len(enemies)):
-		var d1 = (enemies[closest].position - b.position).length()
-		var d2 = (enemies[i].position - b.position).length()
-	
-		if d2 < d1:
-			closest = i
-	
-	enemies[closest].damage(1)
+		if enemies[i].size > enemies[weakest].size:
+			continue
+		weakest = i
+
+	enemies[weakest].damage(1)
 	score += 5
-
-	if enemies[closest].size < 0:
-		enemies[closest].queue_free()
-		enemies.pop_at(closest)
-		
-		
-
 
 func _process(_delta: float) -> void:
 	position_ball_marker()
@@ -123,7 +143,7 @@ func during_turn():
 
 func end_turn():
 	turn_number += 1
-	if turn_number % 4 == 0:
+	if turn_number % 2 == 0:
 		add_new_enemy_to_queue()
 	else:
 		add_player_to_queue()
