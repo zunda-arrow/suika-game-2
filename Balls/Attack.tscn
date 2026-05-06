@@ -1,20 +1,26 @@
 [gd_scene format=3 uid="uid://os6c3f8s4b1d"]
 
 [ext_resource type="Script" uid="uid://bhpvf3pnpwg7g" path="res://Balls/attack.gd" id="1_n6wg0"]
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="2_xo8i1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6wg0"]
 particle_flag_disable_z = true
-direction = Vector3(0.38268343, -0.9238795, 0)
+direction = Vector3(0.93312716, -0.35954657, 0)
 spread = 0.0
-initial_velocity_min = 69.29646
-initial_velocity_max = 69.29646
+initial_velocity_min = 127.388084
+initial_velocity_max = 127.388084
 gravity = Vector3(0, 98, 0)
 
 [node name="Attack" type="Node2D" unique_id=1884355024]
 script = ExtResource("1_n6wg0")
-end = Vector2(1000, 0)
+end = Vector2(100, -10)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=919536534]
 amount = 20
-lifetime = 2.0
+lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_n6wg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=463653812]
+position = Vector2(100, -10)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_xo8i1")

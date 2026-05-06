@@ -10,11 +10,14 @@ func _process(_delta: float) -> void:
 		$GPUParticles2D.emitting = false
 
 	var R = abs(end.x - start.x)
-	var dy = abs(end.y - start.y)
-		
-	var theta = (1./2.) * atan(R / (dy + sqrt(R**2 + dy**2)))
-	var v_zero = sqrt(98**2 / (2 * cos(theta * abs(dy * R * tan(theta)))))
-	var v = Vector2(sin(theta) * v_zero, cos(theta) * v_zero).length()
+	var dy = start.y - end.y
+	
+	# 45 degree angle
+	var theta = atan(R / (dy + sqrt(R**2 + dy**2))) * (1./2.)
+	var v_zero = sqrt((98 * R**2) / (2 * (cos(theta)**2) * abs(dy - (R * tan(theta)))))
 
-	$GPUParticles2D.process_material.initial_velocity = Vector2(v, v)
-	$GPUParticles2D.process_material.direction = Vector3(sin(theta), -cos(theta), 0)
+	$GPUParticles2D.position = start
+	$GPUParticles2D.process_material.initial_velocity = Vector2(v_zero, v_zero)
+	$GPUParticles2D.process_material.direction = Vector3(cos(theta), -sin(theta), 0)
+
+	$Sprite2D.position = end
