@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://vsxu7lj52ieo"]
+
+[ext_resource type="Script" uid="uid://dnoxmo6kto86y" path="res://game/floating_text.gd" id="1_x5r66"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eo2dw"]
+font_size = 50
+outline_size = 5
+
+[node name="FlavorText" type="Node2D" unique_id=1869625816]
+z_index = 10
+script = ExtResource("1_x5r66")
+
+[node name="Label" type="Label" parent="." unique_id=1039582931]
+offset_left = -155.0
+offset_top = -42.0
+offset_right = 212.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+text = "Text Goes Here"
+label_settings = SubResource("LabelSettings_eo2dw")
+horizontal_alignment = 1
+vertical_alignment = 1

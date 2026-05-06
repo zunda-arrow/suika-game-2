@@ -5,15 +5,15 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6wg0"]
 particle_flag_disable_z = true
-direction = Vector3(0.93312716, -0.35954657, 0)
+direction = Vector3(0.8734217, -0.48696452, 0)
 spread = 0.0
-initial_velocity_min = 127.388084
-initial_velocity_max = 127.388084
+initial_velocity_min = 77.93389
+initial_velocity_max = 77.93389
 gravity = Vector3(0, 98, 0)
 
 [node name="Attack" type="Node2D" unique_id=1884355024]
 script = ExtResource("1_n6wg0")
-end = Vector2(100, -10)
+end = Vector2(100, 50)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=919536534]
 amount = 20
@@ -21,6 +21,6 @@ lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_n6wg0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=463653812]
-position = Vector2(100, -10)
+position = Vector2(100, 50)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_xo8i1")

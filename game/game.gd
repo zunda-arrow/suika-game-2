@@ -20,6 +20,15 @@ func _ready() -> void:
 		end_turn()
 
 
+var base_juice = {
+	0: 1,
+	1: 3,
+	2: 7,
+	3: 15,
+	4: 35,
+	5: 100,
+}
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
 		if turn_queue[0] not in [
@@ -104,11 +113,11 @@ func on_attack(b: PlayerBall, size: int):
 	var weakest = 0
 	
 	for i in range(len(enemies)):
-		if enemies[i].size > enemies[weakest].size:
+		if enemies[i].size >= enemies[weakest].size:
 			continue
 		weakest = i
 
-	enemies[weakest].damage(1)
+	enemies[weakest].damage(base_juice[b.size])
 	score += 5
 
 func _process(_delta: float) -> void:
