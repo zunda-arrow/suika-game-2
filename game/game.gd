@@ -117,7 +117,7 @@ func on_attack(b: PlayerBall, size: int):
 			continue
 		weakest = i
 
-	enemies[weakest].damage(base_juice[b.size])
+	enemies.pick_random().damage(base_juice[b.size])
 	score += 5
 
 func _process(_delta: float) -> void:
