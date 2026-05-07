@@ -27,6 +27,8 @@ buses/default_bus_layout="uid://c3bctvykx7ims"
 
 ConfigManager="*res://menu/config_manager.gd"
 TurnQueueOptions="*uid://djphlqbmmtiru"
+BaseDamage="*uid://c5vxrpemqfpu6"
+R="*uid://bniuuobhywcky"
 
 [display]
 

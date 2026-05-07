@@ -4,21 +4,29 @@ class_name PlayerBall
 
 signal on_merge(size: int)
 
+var r: FruitResouce:
+	set(val):
+		if val == null:
+			return
+		r = val
+		%Sprite.texture = val.texture
+	get():
+		return r
+
 func _ready() -> void:
 	super._ready()
 	add_to_group("player-balls")
-
+	
+	r = R.Fruits["default"]
 
 func _physics_process(delta: float) -> void:	
 	for body in self.get_colliding_bodies():
 		collide_with_body(body)
 
-	time_alive+= delta
+	time_alive += delta
 
 func flash():
-	$Sprite2D.show()
 	await get_tree().create_timer(.1).timeout
-	$Sprite2D.hide()
 
 func collide_with_body(body: PhysicsBody2D):
 	if not body.is_in_group("player-balls"):
@@ -33,8 +41,13 @@ func collide_with_body(body: PhysicsBody2D):
 	position = new_pos
 	linear_velocity = new_velocity
 	angular_velocity = new_ang_vel
-	
+
 	size += 1
 
 	body.queue_free()
 	on_merge.emit(size)
+
+
+func _on_on_size_change(old_size: int, new_size: int) -> void:
+	var scale = float(get_radius() * 2) / float(%Sprite.texture.get_width())
+	%Sprite.scale = Vector2(scale, scale)

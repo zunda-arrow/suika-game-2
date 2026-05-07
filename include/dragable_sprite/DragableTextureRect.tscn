@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ctnsjy0xud4k2"]
+
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="1_6xn0m"]
+[ext_resource type="Script" uid="uid://h1qx0dag8sy1" path="res://include/dragable_sprite/dragable_texture_rect.gd" id="2_ld75r"]
+
+[node name="DragableTextureRect" type="TextureRect" unique_id=1472133254]
+texture = ExtResource("1_6xn0m")
+script = ExtResource("2_ld75r")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

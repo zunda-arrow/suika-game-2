@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://byeywof2vv1s3"]
+
+[ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="1_b4c4w"]
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_dsqir"]
+
+[resource]
+script = ExtResource("1_dsqir")
+fruit_name = "Basic"
+fruit_description = "Attack once"
+texture = ExtResource("1_b4c4w")
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

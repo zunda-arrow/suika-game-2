@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://biywyqi122u4q"]
+
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_xpg3g"]
+
+[resource]
+script = ExtResource("1_xpg3g")
+fruit_name = "Hit Strongest"
+target_type = 1
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

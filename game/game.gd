@@ -6,6 +6,14 @@ var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 var turn_queue = []
 var turn_number = 1
 
+var fruits = [
+	R.Fruits["default"],
+	R.Fruits["default"],
+	R.Fruits["default"],
+	R.Fruits["default"],
+	R.Fruits["bomb"],
+]
+
 var score: int:
 	set(val):
 		score = val
@@ -16,18 +24,10 @@ var score: int:
 var waiting_for_turn_to_end = true
 
 func _ready() -> void:
-	for i in range(3):
+	for i in range(2):
 		end_turn()
-
-
-var base_juice = {
-	0: 1,
-	1: 3,
-	2: 7,
-	3: 15,
-	4: 35,
-	5: 100,
-}
+		
+	set_upgrades_text()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
@@ -73,6 +73,8 @@ func spawn_enemy():
 	b.position = Vector2(x, y)
 
 func on_merge(b: PlayerBall, size: int):
+	b.r = fruits[size]
+	
 	on_attack(b, size)
 	var has_attacked = [b]
 	
@@ -111,25 +113,40 @@ func on_attack(b: PlayerBall, size: int):
 	score += 15 + (size - 1) * 5
 
 	var weakest = 0
+	var strongest = 0
 	
 	for i in range(len(enemies)):
-		if enemies[i].size >= enemies[weakest].size:
-			continue
-		weakest = i
+		if enemies[i].size < enemies[weakest].size:
+			weakest = i
+		if enemies[i].size > enemies[strongest].size:
+			strongest = i
 
-	enemies.pick_random().damage(base_juice[b.size])
+	var d = BaseDamage.get_damage(b.size)
+
+	if b.r.target_type == FruitResouce.FruitTarget.Random:
+		enemies.pick_random().damage(d)
+	if b.r.target_type == FruitResouce.FruitTarget.Strongest:
+		enemies[strongest].damage(d)
+	if b.r.target_type == FruitResouce.FruitTarget.Weakest:
+		enemies[weakest].damage(d)
+
 	score += 5
 
 func _process(_delta: float) -> void:
 	position_ball_marker()
 	
 	var should_end_turn = true
+	var are_all_stopped = true
 	if waiting_for_turn_to_end:
 		for b: RigidBody2D in $Balls.get_children():
-			if b.time_alive < .6:
+			if b.time_alive < .5:
 				should_end_turn = false
-				break
-			
+			if b.linear_velocity.length() > .3 or b.time_alive < .5:
+				are_all_stopped = false
+		
+		if are_all_stopped:
+			should_end_turn = true
+
 		if should_end_turn == true:
 			waiting_for_turn_to_end = false
 			print("ending turn")
@@ -194,3 +211,10 @@ func position_ball_marker():
 	var y = (radius ** 2 - (get_local_mouse_position().x - highest_pos.x) ** 2) ** .5
 	
 	$Pointer.position = Vector2(x, highest_pos.y - y)
+
+func set_upgrades_text():	
+	%UpgradeOne.texture = fruits[0].texture
+	%UpgradeTwo.texture = fruits[1].texture
+	%UpgradeThree.texture = fruits[2].texture
+	%UpgradeFour.texture = fruits[3].texture
+	%UpgradeFive.texture = fruits[4].texture

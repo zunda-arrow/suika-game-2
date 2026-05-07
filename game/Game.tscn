@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_m71xk"]
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
+[ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="5_adwu5"]
+[ext_resource type="Script" uid="uid://cw4om821ou0xb" path="res://game/upgrades_list.gd" id="5_knu3h"]
+[ext_resource type="Script" uid="uid://fw8o0om06dwk" path="res://game/pick_upgrade.gd" id="7_1vmna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
@@ -86,3 +89,61 @@ visible = false
 position = Vector2(-151.80151, -147)
 scale = Vector2(0.26130652, 0.26130652)
 texture = ExtResource("4_i75et")
+
+[node name="UpgradesList" type="VBoxContainer" parent="." unique_id=1320869256]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 312.0
+offset_top = 181.0
+offset_right = 399.0
+offset_bottom = 632.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_knu3h")
+
+[node name="UpgradeOne" type="TextureRect" parent="UpgradesList" unique_id=1234421747]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_adwu5")
+expand_mode = 4
+
+[node name="UpgradeTwo" type="TextureRect" parent="UpgradesList" unique_id=684092841]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_adwu5")
+expand_mode = 4
+
+[node name="UpgradeThree" type="TextureRect" parent="UpgradesList" unique_id=597307610]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_adwu5")
+expand_mode = 4
+
+[node name="UpgradeFour" type="TextureRect" parent="UpgradesList" unique_id=247836278]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_adwu5")
+expand_mode = 4
+
+[node name="UpgradeFive" type="TextureRect" parent="UpgradesList" unique_id=268997282]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_adwu5")
+expand_mode = 4
+
+[node name="PickUpgrade" type="Control" parent="." unique_id=1902828036]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_1vmna")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PickUpgrade" unique_id=568385407]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[connection signal="upgrade_hovered" from="UpgradesList" to="PickUpgrade" method="_on_upgrades_list_upgrade_hovered"]
