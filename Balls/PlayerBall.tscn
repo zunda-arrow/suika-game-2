@@ -3,6 +3,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://c7liedjeex7l6" path="res://Balls/ball_physics.tres" id="1_qwpsd"]
 [ext_resource type="Script" uid="uid://dm21xk1v7cw60" path="res://Balls/player_ball.gd" id="1_tu6pa"]
 [ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="3_k1md1"]
+[ext_resource type="PackedScene" uid="uid://b3fufgvbbm832" path="res://include/tooltip/DefaultTooltip.tscn" id="4_xwmf1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mkn7c"]
 radius = 20.0
@@ -17,8 +18,13 @@ script = ExtResource("1_tu6pa")
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_mkn7c")
 
+[node name="DefaultTooltip" parent="." unique_id=1094151248 node_paths=PackedStringArray("around") instance=ExtResource("4_xwmf1")]
+top_level = true
+around = NodePath("../Sprite")
+
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1474750359]
 unique_name_in_owner = true
+top_level = true
 position = Vector2(0, -1)
 scale = Vector2(0.3359375, 0.3359375)
 texture = ExtResource("3_k1md1")

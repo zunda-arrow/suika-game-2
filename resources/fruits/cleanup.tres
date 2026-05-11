@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://c4lfdw4nbovqx"]
 
 [ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_2enqg"]
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="2_8vu34"]
 
 [resource]
 script = ExtResource("1_2enqg")
 fruit_name = "Cleanup"
 fruit_description = "Attack weakest twice"
+texture = ExtResource("2_8vu34")
 extra_hits = 1
 target_type = 2
 metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

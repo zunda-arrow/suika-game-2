@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_dsqir")
-fruit_name = "Basic"
-fruit_description = "Attack once"
+fruit_name = "Default"
 texture = ExtResource("1_b4c4w")
 metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

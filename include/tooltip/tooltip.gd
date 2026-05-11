@@ -40,6 +40,7 @@ func _process(_delta: float):
 
 	position_main_tooltip()
 
+
 	if show_when_hovering != null:
 		if get_node_global_bounding_box(show_when_hovering).has_point(get_global_mouse_position()):
 			show()
@@ -144,6 +145,12 @@ func get_node_global_bounding_box(node: Node):
 
 	if node is Node2D:
 		node_size = node.get_rect()
+		
+		node_size.position.x *= node.scale.x
+		node_size.position.y *= node.scale.y
+		node_size.size.x *= node.scale.x
+		node_size.size.y *= node.scale.y
+		
 		node_top_left = node_position + node_size.position
 	if node is Control:
 		node_size = node.get_global_rect()

@@ -1,13 +1,14 @@
 class_name BaseJuice
 extends Node
 
+# Multipy the base damage by this number^2. Upgrading incraeses by base value.
 var base_juice = {
 	0: 1,
-	1: 3,
-	2: 8,
-	3: 20,
-	4: 50,
-	5: 300,
+	1: 2,
+	2: 3,
+	3: 4,
+	4: 5,
+	5: 6,
 }
 
 var juice_levels = {

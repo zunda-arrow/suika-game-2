@@ -17,9 +17,9 @@ func _physics_process(delta: float) -> void:
 func _ready() -> void:
 	super._ready()
 	add_to_group("enemy-ball")
-	size = randi_range(1, 2)
-	
-	health = 2 ** size
+	size = 0
+
+	health = 1
 
 func damage(n):
 	var text = floating_text.instantiate()

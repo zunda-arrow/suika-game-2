@@ -18,7 +18,7 @@ direction_1 = 1
 direction_2 = 2
 direction_3 = 3
 tooltip = NodePath("MainTooltip")
-avoid_overlap = [null, null, null, null, null, null]
+avoid_overlap = [null, null, null, null, null, null, null, null]
 
 [node name="MainTooltip" parent="Tooltip" unique_id=1640107277 instance=ExtResource("2_vufjc")]
 unique_name_in_owner = true
@@ -34,7 +34,7 @@ direction_1 = 1
 direction_2 = 3
 direction_3 = 2
 tooltip = NodePath("VBoxContainer")
-avoid_overlap = [null]
+avoid_overlap = [null, null, null]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hints" unique_id=1718395702]
 layout_mode = 0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://d2kov7r0s7ixh"]
+
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_dj6dk"]
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="2_j1xah"]
+
+[resource]
+script = ExtResource("1_dj6dk")
+fruit_name = "random attack"
+fruit_description = "2 random fruits attacks at the end of the turn"
+texture = ExtResource("2_j1xah")
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

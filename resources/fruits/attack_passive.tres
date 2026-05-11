@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://cxitfqla42xls"]
+
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_my18b"]
+[ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="2_my18b"]
+
+[resource]
+script = ExtResource("1_my18b")
+fruit_name = "Attack Passive"
+fruit_description = "When a fruit merges, attack"
+texture = ExtResource("2_my18b")
+extra_damage = null
+extra_hits = null
+target_type = null
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

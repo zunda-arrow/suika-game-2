@@ -8,9 +8,9 @@ var size: int:
 	get():
 		return size
 	set(val):
-		on_size_change.emit(size, val)
 		size = val
 		%Collision.shape.radius = get_radius()
+		on_size_change.emit(size, val)
 		
 var time_alive = 0
 

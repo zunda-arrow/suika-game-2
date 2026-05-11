@@ -18,6 +18,8 @@ enum FruitTarget {
 
 enum Behavior {
 	Default,
+	AttackOnce,
+	RandomFruitAttacks,
 }
 
 class Fruit extends Node:
@@ -29,10 +31,28 @@ class Fruit extends Node:
 	var behavior: DefaultFruitBehavior
 
 class DefaultFruitBehavior:
-	pass
+	# This triggers on merge
+	func passive(_game: Game, _fruit: PlayerBall):
+		return null
+
+class AttackOnce extends DefaultFruitBehavior:
+	func passive(game: Game, fruit: PlayerBall):
+		game.create_attack_from_fruit(fruit)
+
+# Two random fruits trigger passive
+class RandomFruitAttacks extends  DefaultFruitBehavior:
+	func passive(game: Game, _fruit: PlayerBall):
+		var fruits = game.get_fruits()
+		fruits.shuffle()
+		var two_fruits = fruits.slice(0, 2)
+		for fruit in two_fruits:
+			game.create_attack_from_fruit(fruit)
+
 
 var all_behaviors = {
 	Behavior.Default: DefaultFruitBehavior,
+	Behavior.AttackOnce: AttackOnce,
+	Behavior.RandomFruitAttacks: RandomFruitAttacks,
 }
 
 func new() -> Fruit:

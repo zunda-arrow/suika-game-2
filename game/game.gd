@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Game
+
 var ball = preload("res://Balls/PlayerBall.tscn")
 var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 
@@ -8,8 +10,8 @@ var turn_number = 1
 
 var fruits = [
 	R.Fruits["default"],
-	R.Fruits["default"],
-	R.Fruits["default"],
+	R.Fruits["attack_passive"],
+	R.Fruits["random_attack"],
 	R.Fruits["default"],
 	R.Fruits["bomb"],
 ]
@@ -28,6 +30,7 @@ func _ready() -> void:
 		end_turn()
 		
 	set_upgrades_text()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
@@ -56,13 +59,21 @@ func _input(event: InputEvent) -> void:
 		$Balls.add_child(b)
 		b.position = Vector2(x, y)
 		b.on_merge.connect(func(size):
-			on_merge(b, size)
+			_on_merge(b, size)
 		)
 		
 		if fruit == TurnQueueOptions.Fruit0:
 			b.size = 0
+			b.r = fruits[0].new()
 		if fruit == TurnQueueOptions.Fruit1:
 			b.size = 1
+			b.r = fruits[1].new()
+
+func get_fruits():
+	return $Balls.get_children()
+
+func get_shrooms():
+	return $EnemyBalls.get_children()
 
 func spawn_enemy():
 	var x = randi_range(550, 1200)
@@ -72,14 +83,22 @@ func spawn_enemy():
 	$EnemyBalls.add_child(b)
 	b.position = Vector2(x, y)
 
-func on_merge(b: PlayerBall, size: int):
-	b.r = fruits[size]
+func _on_merge(b: PlayerBall, size: int):
+	b.r = fruits[size].new()
 	
-	on_attack(b, size)
+	await create_attack_from_fruit(b)
+	
+	for fruit: PlayerBall in get_fruits():
+		await fruit.r.behavior.passive(self, fruit)
+	
+	return
+	
+	# Make all of the fruits attack
+	
 	var has_attacked = [b]
 	
 	while true:
-		var balls = $Balls.get_children().filter(func(a):
+		var balls = get_fruits().filter(func(a):
 			return a not in has_attacked
 		)
 
@@ -98,19 +117,19 @@ func on_merge(b: PlayerBall, size: int):
 			continue
 		if ball == b:
 			continue
-		on_attack(ball, size)
+		create_attack_from_fruit(ball)
 		
 		await get_tree().create_timer(.1).timeout
 
-func on_attack(b: PlayerBall, size: int):
+func create_attack_from_fruit(b: PlayerBall):
 	b.flash()
 	
-	var enemies = $EnemyBalls.get_children()
+	var enemies = get_shrooms()
 	
 	if len(enemies) == 0:
 		return
 
-	score += 15 + (size - 1) * 5
+	score += 15 + (b.size - 1) * 5
 
 	var weakest = 0
 	var strongest = 0
@@ -120,8 +139,8 @@ func on_attack(b: PlayerBall, size: int):
 			weakest = i
 		if enemies[i].size > enemies[strongest].size:
 			strongest = i
-
-	var d = BaseDamage.get_damage(b.size)
+	
+	var d = BaseDamage.get_damage(b.size) ** 2
 
 	if b.r.target_type == FruitResouce.FruitTarget.Random:
 		enemies.pick_random().damage(d)
@@ -131,6 +150,8 @@ func on_attack(b: PlayerBall, size: int):
 		enemies[weakest].damage(d)
 
 	score += 5
+	
+	await get_tree().create_timer(.1).timeout
 
 func _process(_delta: float) -> void:
 	position_ball_marker()
@@ -138,7 +159,7 @@ func _process(_delta: float) -> void:
 	var should_end_turn = true
 	var are_all_stopped = true
 	if waiting_for_turn_to_end:
-		for b: RigidBody2D in $Balls.get_children():
+		for b: RigidBody2D in get_fruits():
 			if b.time_alive < .5:
 				should_end_turn = false
 			if b.linear_velocity.length() > .3 or b.time_alive < .5:
@@ -191,7 +212,7 @@ func add_player_to_queue():
 func position_ball_marker():
 	var highest_ball: Ball = null
 
-	for b: Ball in $Balls.get_children():
+	for b: Ball in get_fruits():
 		var r = b.get_radius()
 		
 		if abs(b.position.x - get_local_mouse_position().x) < r:
