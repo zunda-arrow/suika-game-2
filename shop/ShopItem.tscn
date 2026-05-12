@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dg4son67dcmqd"]
+
+[ext_resource type="PackedScene" uid="uid://ctnsjy0xud4k2" path="res://include/dragable_sprite/DragableTextureRect.tscn" id="1_d44ro"]
+[ext_resource type="Script" uid="uid://bnadyt5alcql" path="res://shop/shop_item.gd" id="1_mcq3o"]
+[ext_resource type="Resource" uid="uid://cxitfqla42xls" path="res://resources/fruits/attack_passive.tres" id="2_36s6b"]
+
+[node name="ShopItem" type="Node2D" unique_id=1367231715]
+script = ExtResource("1_mcq3o")
+fruit_resource = ExtResource("2_36s6b")
+
+[node name="DragableTextureRect" parent="." unique_id=1472133254 instance=ExtResource("1_d44ro")]
+unique_name_in_owner = true

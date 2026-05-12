@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dy1snehx3kp86"]
+
+[ext_resource type="PackedScene" uid="uid://ctnsjy0xud4k2" path="res://include/dragable_sprite/DragableTextureRect.tscn" id="1_e2ga4"]
+[ext_resource type="Script" uid="uid://dheyi1ct2hr60" path="res://shop/shop.gd" id="1_no236"]
+
+[node name="Shop" type="Node2D" unique_id=123668820]
+script = ExtResource("1_no236")
+
+[node name="Panel" type="Panel" parent="." unique_id=638878453]
+offset_left = 583.0
+offset_top = 239.0
+offset_right = 1163.0
+offset_bottom = 598.0
+
+[node name="Item1" parent="." unique_id=1472133254 instance=ExtResource("1_e2ga4")]
+offset_left = 647.0
+offset_top = 390.0
+offset_right = 775.0
+offset_bottom = 518.0
