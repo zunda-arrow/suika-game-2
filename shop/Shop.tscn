@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="4_nxcqm"]
 [ext_resource type="Texture2D" uid="uid://dcpfjm86vaea4" path="res://assets/sweets_candy.png" id="5_fppc6"]
 
+[sub_resource type="Theme" id="Theme_nxcqm"]
+HBoxContainer/constants/separation = 8
+VBoxContainer/constants/separation = 8
+
 [node name="Shop" type="Control" unique_id=1723316053]
 layout_mode = 3
 anchors_preset = 0
@@ -15,6 +19,7 @@ script = ExtResource("1_no236")
 layout_mode = 0
 offset_right = 318.0
 offset_bottom = 128.0
+theme = SubResource("Theme_nxcqm")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1364439310]
 layout_mode = 2
@@ -38,6 +43,10 @@ layout_mode = 2
 texture = ExtResource("3_o2e12")
 expand_mode = 5
 
+[node name="HSeparator" type="HSeparator" parent="Panel/HBoxContainer" unique_id=1148127805]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer" unique_id=1918011633]
 layout_mode = 2
 alignment = 1
@@ -59,6 +68,10 @@ expand_mode = 3
 [node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer/Fruits" unique_id=1497485173]
 layout_mode = 2
 text = "Reroll"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer/VBoxContainer" unique_id=1671136609]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
 [node name="Candy" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer" unique_id=961027996]
 custom_minimum_size = Vector2(0, 128)
