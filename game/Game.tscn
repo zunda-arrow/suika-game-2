@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
 [ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="5_adwu5"]
 [ext_resource type="Script" uid="uid://cw4om821ou0xb" path="res://game/upgrades_list.gd" id="5_knu3h"]
-[ext_resource type="Script" uid="uid://fw8o0om06dwk" path="res://game/pick_upgrade.gd" id="7_1vmna"]
+[ext_resource type="Script" uid="uid://fw8o0om06dwk" path="res://shop/shop.gd" id="7_1vmna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
@@ -143,11 +143,13 @@ offset_bottom = 40.0
 script = ExtResource("7_1vmna")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PickUpgrade" unique_id=568385407]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 0
 anchor_left = 30.45
 anchor_top = 4.1
 anchor_right = 32.05
 anchor_bottom = 5.7
+offset_right = -64.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreBar" type="ProgressBar" parent="." unique_id=489478777]
