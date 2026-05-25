@@ -32,12 +32,12 @@ text = "Score"
 position = Vector2(1762, 1862)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallL" unique_id=369621230]
-position = Vector2(-1269, -1305)
+position = Vector2(-1602, -1318)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_3ibn1")
 
 [node name="Bottom" type="StaticBody2D" parent="Walls" unique_id=1932400119]
-position = Vector2(881, 931)
+position = Vector2(548, 918)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom" unique_id=157315551]
 position = Vector2(-2.5, 3)
@@ -47,35 +47,43 @@ shape = SubResource("RectangleShape2D_3ibn1")
 position = Vector2(2518, 1862)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallR" unique_id=1412958745]
-position = Vector2(-1269, -1305)
+position = Vector2(-1602, -1318)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_3ibn1")
+
+[node name="Right" type="Node2D" parent="." unique_id=823126482]
+unique_name_in_owner = true
+position = Vector2(844, 153)
+
+[node name="Left" type="Node2D" parent="." unique_id=895754788]
+unique_name_in_owner = true
+position = Vector2(217, 149)
 
 [node name="Balls" type="Node2D" parent="." unique_id=657216197]
 
 [node name="EnemyBalls" type="Node2D" parent="." unique_id=846633806]
 
 [node name="Consumable" type="Label" parent="." unique_id=1571869060]
-offset_left = 31.0
-offset_top = 655.0
-offset_right = 448.0
-offset_bottom = 826.0
+offset_left = 1397.0
+offset_top = 890.0
+offset_right = 1814.0
+offset_bottom = 1061.0
 theme_override_font_sizes/font_size = 40
 text = "Consumable (Press C to use at mouse cursor)"
 autowrap_mode = 2
 
 [node name="Consumable2" type="Label" parent="." unique_id=217787962]
-offset_left = 40.0
-offset_top = 822.0
-offset_right = 457.0
-offset_bottom = 993.0
+offset_left = 962.0
+offset_top = 893.0
+offset_right = 1379.0
+offset_bottom = 1064.0
 theme_override_font_sizes/font_size = 40
 text = "Empty"
 autowrap_mode = 2
 
 [node name="TurnQueue" parent="." unique_id=1915177195 instance=ExtResource("2_qdja7")]
 unique_name_in_owner = true
-position = Vector2(1427, 179)
+position = Vector2(963, 599)
 
 [node name="Pointer" type="Sprite2D" parent="." unique_id=1384657455]
 material = SubResource("CanvasItemMaterial_m71xk")
@@ -91,17 +99,10 @@ scale = Vector2(0.26130652, 0.26130652)
 texture = ExtResource("4_i75et")
 
 [node name="UpgradesList" type="VBoxContainer" parent="." unique_id=1320869256]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 312.0
-offset_top = 181.0
-offset_right = 399.0
-offset_bottom = 632.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 956.0
+offset_top = 130.0
+offset_right = 1043.0
+offset_bottom = 581.0
 script = ExtResource("5_knu3h")
 
 [node name="UpgradeOne" type="TextureRect" parent="UpgradesList" unique_id=1234421747]
@@ -143,7 +144,19 @@ script = ExtResource("7_1vmna")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PickUpgrade" unique_id=568385407]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
+anchor_left = 30.45
+anchor_top = 4.1
+anchor_right = 32.05
+anchor_bottom = 5.7
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreBar" type="ProgressBar" parent="." unique_id=489478777]
+offset_left = 18.0
+offset_top = 101.0
+offset_right = 110.84994
+offset_bottom = 993.20215
+rotation = -0.0042857127
+fill_mode = 3
 
 [connection signal="upgrade_hovered" from="UpgradesList" to="PickUpgrade" method="_on_upgrades_list_upgrade_hovered"]
+[connection signal="upgrade_picked" from="PickUpgrade" to="." method="_on_pick_upgrade_upgrade_picked"]

@@ -10,8 +10,8 @@ var turn_number = 1
 
 var fruits = [
 	R.Fruits["default"],
-	R.Fruits["attack_passive"],
-	R.Fruits["random_attack"],
+	R.Fruits["default"],
+	R.Fruits["default"],
 	R.Fruits["default"],
 	R.Fruits["bomb"],
 ]
@@ -48,10 +48,10 @@ func _input(event: InputEvent) -> void:
 		%TurnQueue.dispay_turns(turn_queue)
 		
 		var x = get_global_mouse_position().x
-		if x < 550:
-			x = 550
-		if x > 1200:
-			x = 1200
+		if x < %Left.position.x:
+			x = %Left.position.x
+		if x > %Right.position.x:
+			x = %Right.position.x
 		
 		var y = 100
 		
@@ -76,7 +76,7 @@ func get_shrooms():
 	return $EnemyBalls.get_children()
 
 func spawn_enemy():
-	var x = randi_range(550, 1200)
+	var x = randi_range(%Left.position.x, %Right.position.x)
 	var y = 100
 	
 	var b = enemy_ball.instantiate()
@@ -239,3 +239,9 @@ func set_upgrades_text():
 	%UpgradeThree.texture = fruits[2].texture
 	%UpgradeFour.texture = fruits[3].texture
 	%UpgradeFive.texture = fruits[4].texture
+
+
+func _on_pick_upgrade_upgrade_picked(tier: int, upgrade: FruitResouce) -> void:
+	fruits[tier] = upgrade
+	print("upgraded")
+	set_upgrades_text()

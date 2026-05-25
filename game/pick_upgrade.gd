@@ -1,11 +1,12 @@
 extends Control
 
-signal upgrade_picked(number: int)
+signal upgrade_picked(tier: int, fruit: FruitResouce)
 
 var curr_upgrade_hovered = -1
 
 var dragable_sprite = preload("res://include/dragable_sprite/DragableTextureRect.tscn")
 var upgrade_texture_rects: Array[DragableTextureRect] = []
+var shop_items = []
 
 class Upgrade:
 	var ball: FruitResouce
@@ -24,6 +25,8 @@ func new_ball_upgrade(ball) -> Upgrade:
 
 
 func show_upgrade_list(upgrades: Array[Upgrade]):
+	shop_items = upgrades
+	
 	for i in range(len(upgrades)):
 		var u: DragableTextureRect = dragable_sprite.instantiate()
 
@@ -32,6 +35,7 @@ func show_upgrade_list(upgrades: Array[Upgrade]):
 
 		u.drag_ended.connect(drag_ended(i))
 		$HBoxContainer.add_child(u)
+		u.texture = upgrades[i].ball.texture
 		upgrade_texture_rects.push_back(u)
 
 func drag_ended(i):
@@ -39,9 +43,9 @@ func drag_ended(i):
 		if curr_upgrade_hovered < 0:
 			upgrade_texture_rects[i].reset()
 			return
-		
+
 		# Otherwise we pick the upgrade
-		upgrade_picked.emit(i)
+		upgrade_picked.emit(i, shop_items[i].ball)
 		upgrade_texture_rects[i].queue_free()
 		upgrade_texture_rects[i] = null
 
