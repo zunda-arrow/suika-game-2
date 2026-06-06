@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5f3u2fe5dcrv"]
+
+[ext_resource type="Script" uid="uid://cbk5q33ww2rtn" path="res://game/item_list.gd" id="1_sem3b"]
+[ext_resource type="PackedScene" uid="uid://dg4son67dcmqd" path="res://shop/ShopItem.tscn" id="2_figue"]
+[ext_resource type="Resource" uid="uid://cxitfqla42xls" path="res://resources/fruits/attack_passive.tres" id="3_xn4ji"]
+
+[node name="ItemList" type="PanelContainer" unique_id=1248799882]
+offset_right = 48.0
+offset_bottom = 96.0
+script = ExtResource("1_sem3b")
+width = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=633854527]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="ShopItem" parent="VBoxContainer" unique_id=1367231715 instance=ExtResource("2_figue")]
+layout_mode = 2
+expand_mode = 5
+fruit_resource = ExtResource("3_xn4ji")
+
+[connection signal="focus_entered" from="VBoxContainer" to="." method="_on_v_box_container_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer" to="." method="_on_v_box_container_focus_exited"]

@@ -25,6 +25,7 @@ func new_ball_upgrade(ball) -> Upgrade:
 
 
 func show_upgrade_list(upgrades: Array[Upgrade]):
+	return
 	shop_items = upgrades
 	
 	for i in range(len(upgrades)):

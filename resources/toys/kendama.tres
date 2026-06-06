@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ToyResouce" format=3 uid="uid://c4ek6vlt6bik3"]
+
+[ext_resource type="Script" uid="uid://bug2kipgvymjn" path="res://resources/toy.gd" id="1_c4eq6"]
+[ext_resource type="Texture2D" uid="uid://dnwauxoj6gbad" path="res://assets/omocha_kendama.png" id="2_4vsfb"]
+
+[resource]
+script = ExtResource("1_c4eq6")
+toy_name = "Kendama"
+toy_description = "A stick and ball"
+texture = ExtResource("2_4vsfb")
+metadata/_custom_type_script = "uid://bug2kipgvymjn"

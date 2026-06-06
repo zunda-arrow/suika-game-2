@@ -8,7 +8,4 @@ script = ExtResource("1_my18b")
 fruit_name = "Attack Passive"
 fruit_description = "When a fruit merges, attack"
 texture = ExtResource("2_my18b")
-extra_damage = null
-extra_hits = null
-target_type = null
 metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

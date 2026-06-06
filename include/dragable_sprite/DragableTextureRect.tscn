@@ -5,6 +5,7 @@
 
 [node name="DragableTextureRect" type="TextureRect" unique_id=1472133254]
 texture = ExtResource("1_6xn0m")
+expand_mode = 4
 script = ExtResource("2_ld75r")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

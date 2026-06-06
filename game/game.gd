@@ -8,6 +8,8 @@ var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 var turn_queue = []
 var turn_number = 1
 
+var required_score = 100
+
 var fruits = [
 	R.Fruits["default"],
 	R.Fruits["default"],
@@ -19,7 +21,11 @@ var fruits = [
 var score: int:
 	set(val):
 		score = val
-		%Score.text = "Score:" + str(val)
+		%Score.text = "Score:" + str(val) + "/" + str(required_score)
+		%ScoreBar.value = float(val) / float(required_score)
+		
+		if score >= required_score:
+			after_score_capped_reached()
 	get():
 		return score
 
@@ -34,6 +40,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
+		# You can not drop fruits while the shop is open
+		if %Shop.visible:
+			return
 		if turn_queue[0] not in [
 			TurnQueueOptions.Fruit0,
 			TurnQueueOptions.Fruit1,
@@ -245,3 +254,9 @@ func _on_pick_upgrade_upgrade_picked(tier: int, upgrade: FruitResouce) -> void:
 	fruits[tier] = upgrade
 	print("upgraded")
 	set_upgrades_text()
+
+
+func after_score_capped_reached():
+	score = 0
+	# Show shop
+	%Shop.show()

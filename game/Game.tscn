@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_m71xk"]
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
-[ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="5_adwu5"]
 [ext_resource type="Script" uid="uid://cw4om821ou0xb" path="res://game/upgrades_list.gd" id="5_knu3h"]
+[ext_resource type="PackedScene" uid="uid://5f3u2fe5dcrv" path="res://game/ItemList.tscn" id="6_wmqhs"]
 [ext_resource type="Script" uid="uid://fw8o0om06dwk" path="res://shop/shop.gd" id="7_1vmna"]
+[ext_resource type="PackedScene" uid="uid://dy1snehx3kp86" path="res://shop/Shop.tscn" id="8_wmqhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
@@ -105,35 +106,20 @@ offset_right = 1043.0
 offset_bottom = 581.0
 script = ExtResource("5_knu3h")
 
-[node name="UpgradeOne" type="TextureRect" parent="UpgradesList" unique_id=1234421747]
-unique_name_in_owner = true
+[node name="Upgrade1" parent="UpgradesList" unique_id=1174276015 instance=ExtResource("6_wmqhs")]
 layout_mode = 2
-texture = ExtResource("5_adwu5")
-expand_mode = 4
 
-[node name="UpgradeTwo" type="TextureRect" parent="UpgradesList" unique_id=684092841]
-unique_name_in_owner = true
+[node name="Upgrade2" parent="UpgradesList" unique_id=1248799882 instance=ExtResource("6_wmqhs")]
 layout_mode = 2
-texture = ExtResource("5_adwu5")
-expand_mode = 4
 
-[node name="UpgradeThree" type="TextureRect" parent="UpgradesList" unique_id=597307610]
-unique_name_in_owner = true
+[node name="Upgrade3" parent="UpgradesList" unique_id=566278513 instance=ExtResource("6_wmqhs")]
 layout_mode = 2
-texture = ExtResource("5_adwu5")
-expand_mode = 4
 
-[node name="UpgradeFour" type="TextureRect" parent="UpgradesList" unique_id=247836278]
-unique_name_in_owner = true
+[node name="Upgrade4" parent="UpgradesList" unique_id=330759668 instance=ExtResource("6_wmqhs")]
 layout_mode = 2
-texture = ExtResource("5_adwu5")
-expand_mode = 4
 
-[node name="UpgradeFive" type="TextureRect" parent="UpgradesList" unique_id=268997282]
-unique_name_in_owner = true
+[node name="Upgrade5" parent="UpgradesList" unique_id=1169942106 instance=ExtResource("6_wmqhs")]
 layout_mode = 2
-texture = ExtResource("5_adwu5")
-expand_mode = 4
 
 [node name="PickUpgrade" type="Control" parent="." unique_id=1902828036]
 layout_mode = 3
@@ -153,12 +139,25 @@ offset_right = -64.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreBar" type="ProgressBar" parent="." unique_id=489478777]
+unique_name_in_owner = true
 offset_left = 18.0
 offset_top = 101.0
 offset_right = 110.84994
 offset_bottom = 993.20215
 rotation = -0.0042857127
+max_value = 1.0
 fill_mode = 3
+show_percentage = false
+
+[node name="Shop" parent="." unique_id=1723316053 instance=ExtResource("8_wmqhs")]
+unique_name_in_owner = true
+visible = false
+offset_left = 1233.0
+offset_top = 176.0
+offset_right = 1750.0
+offset_bottom = 464.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="upgrade_hovered" from="UpgradesList" to="PickUpgrade" method="_on_upgrades_list_upgrade_hovered"]
 [connection signal="upgrade_picked" from="PickUpgrade" to="." method="_on_pick_upgrade_upgrade_picked"]

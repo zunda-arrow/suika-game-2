@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ConsumableResouce" format=3 uid="uid://dgeji8r3j1hqt"]
+
+[ext_resource type="Script" uid="uid://dtxyiddk88g7d" path="res://resources/consumables.gd" id="1_bg0em"]
+[ext_resource type="Texture2D" uid="uid://dcpfjm86vaea4" path="res://assets/sweets_candy.png" id="2_ojclg"]
+
+[resource]
+script = ExtResource("1_bg0em")
+consumable_name = "Lollipop"
+consumable_description = "A sweet treat"
+texture = ExtResource("2_ojclg")
+metadata/_custom_type_script = "uid://dtxyiddk88g7d"
