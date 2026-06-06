@@ -19,5 +19,6 @@ layout_mode = 2
 expand_mode = 5
 fruit_resource = ExtResource("3_xn4ji")
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="focus_entered" from="VBoxContainer" to="." method="_on_v_box_container_focus_entered"]
 [connection signal="focus_exited" from="VBoxContainer" to="." method="_on_v_box_container_focus_exited"]
