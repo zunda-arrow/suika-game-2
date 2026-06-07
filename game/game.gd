@@ -18,6 +18,9 @@ var fruits = [
 	R.Fruits["bomb"],
 ]
 
+var currently_picked_upgrade = null
+
+
 var score: int:
 	set(val):
 		score = val
@@ -34,9 +37,26 @@ var waiting_for_turn_to_end = true
 func _ready() -> void:
 	for i in range(2):
 		end_turn()
-		
-	set_upgrades_text()
+	
+	for item_box in [
+		%Upgrade1,
+		%Upgrade2,
+		%Upgrade3,
+		%Upgrade4,
+		%Upgrade5,
+	]:
+		item_box.connect("item_dropped", func():
+			drop_item(item_box, "fruit")
+		)
 
+func drop_item(item_box, t):
+	var upgrade = currently_picked_upgrade
+	if upgrade == null:
+		return
+	currently_picked_upgrade = null
+	
+	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:
+		print("upgrade picked")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
@@ -242,21 +262,11 @@ func position_ball_marker():
 	
 	$Pointer.position = Vector2(x, highest_pos.y - y)
 
-func set_upgrades_text():	
-	%UpgradeOne.texture = fruits[0].texture
-	%UpgradeTwo.texture = fruits[1].texture
-	%UpgradeThree.texture = fruits[2].texture
-	%UpgradeFour.texture = fruits[3].texture
-	%UpgradeFive.texture = fruits[4].texture
-
-
-func _on_pick_upgrade_upgrade_picked(tier: int, upgrade: FruitResouce) -> void:
-	fruits[tier] = upgrade
-	print("upgraded")
-	set_upgrades_text()
-
-
 func after_score_capped_reached():
 	score = 0
 	# Show shop
 	%Shop.show()
+
+
+func _on_shop_upgrade_picked(upgrade) -> void:
+	currently_picked_upgrade = upgrade

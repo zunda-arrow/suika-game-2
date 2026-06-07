@@ -14,7 +14,7 @@ extends Control
 	get():
 		return fruit_resource
 
-@export var toy_resource: ToyResouce:
+@export var toy_resource: ToyResource:
 	set(val):
 		if val == null:
 			return
@@ -42,6 +42,9 @@ var item_type: ItemType
 
 func _ready() -> void:
 	_setup()
+
+func reset():
+	%DragableTextureRect.reset()
 
 func _setup():
 	%DragableTextureRect.expand_mode = expand_mode

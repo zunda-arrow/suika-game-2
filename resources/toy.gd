@@ -1,4 +1,4 @@
-class_name ToyResouce
+class_name ToyResource
 extends Resource
 
 @export var toy_name: String

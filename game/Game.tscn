@@ -4,9 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_m71xk"]
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
-[ext_resource type="Script" uid="uid://cw4om821ou0xb" path="res://game/upgrades_list.gd" id="5_knu3h"]
 [ext_resource type="PackedScene" uid="uid://5f3u2fe5dcrv" path="res://game/ItemList.tscn" id="6_wmqhs"]
-[ext_resource type="Script" uid="uid://fw8o0om06dwk" path="res://shop/shop.gd" id="7_1vmna"]
 [ext_resource type="PackedScene" uid="uid://dy1snehx3kp86" path="res://shop/Shop.tscn" id="8_wmqhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
@@ -104,39 +102,31 @@ offset_left = 956.0
 offset_top = 130.0
 offset_right = 1043.0
 offset_bottom = 581.0
-script = ExtResource("5_knu3h")
 
 [node name="Upgrade1" parent="UpgradesList" unique_id=1174276015 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
 layout_mode = 2
+item_type = 0
 
 [node name="Upgrade2" parent="UpgradesList" unique_id=1248799882 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
 layout_mode = 2
+item_type = 0
 
 [node name="Upgrade3" parent="UpgradesList" unique_id=566278513 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
 layout_mode = 2
+item_type = 0
 
 [node name="Upgrade4" parent="UpgradesList" unique_id=330759668 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
 layout_mode = 2
+item_type = 0
 
 [node name="Upgrade5" parent="UpgradesList" unique_id=1169942106 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="PickUpgrade" type="Control" parent="." unique_id=1902828036]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("7_1vmna")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PickUpgrade" unique_id=568385407]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 0
-anchor_left = 30.45
-anchor_top = 4.1
-anchor_right = 32.05
-anchor_bottom = 5.7
-offset_right = -64.0
-metadata/_edit_use_anchors_ = true
+item_type = 0
 
 [node name="ScoreBar" type="ProgressBar" parent="." unique_id=489478777]
 unique_name_in_owner = true
@@ -151,7 +141,6 @@ show_percentage = false
 
 [node name="Shop" parent="." unique_id=1723316053 instance=ExtResource("8_wmqhs")]
 unique_name_in_owner = true
-visible = false
 offset_left = 1233.0
 offset_top = 176.0
 offset_right = 1750.0
@@ -159,5 +148,4 @@ offset_bottom = 464.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[connection signal="upgrade_hovered" from="UpgradesList" to="PickUpgrade" method="_on_upgrades_list_upgrade_hovered"]
-[connection signal="upgrade_picked" from="PickUpgrade" to="." method="_on_pick_upgrade_upgrade_picked"]
+[connection signal="upgrade_picked" from="Shop" to="." method="_on_shop_upgrade_picked"]

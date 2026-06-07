@@ -10,10 +10,10 @@ var start_pos = Vector2(0, 0)
 var start_mouse_offset = Vector2(0, 0)
 
 func _ready() -> void:
-	start_pos = global_position
+	start_pos = position
 
 func reset():
-	global_position = start_pos
+	position = start_pos
 
 func _on_gui_input(event: InputEvent) -> void:
 	if is_dragging:
@@ -24,7 +24,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		is_dragging = true
 		start_mouse_offset = get_global_mouse_position() - global_position
 		drag_started.emit(position)
-		
+
 	if event.is_action_released("Click"):
 		is_dragging = false
 		drag_ended.emit(position)

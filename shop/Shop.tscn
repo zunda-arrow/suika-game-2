@@ -24,16 +24,19 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 
 [node name="Toy1" parent="HBoxContainer/VBoxContainer2" unique_id=213067110 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 5
 toy_resource = ExtResource("3_mq270")
 
 [node name="Toy2" parent="HBoxContainer/VBoxContainer2" unique_id=743845526 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 5
 toy_resource = ExtResource("3_mq270")
 
 [node name="Toy3" parent="HBoxContainer/VBoxContainer2" unique_id=1917992112 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 5
 toy_resource = ExtResource("3_mq270")
@@ -50,12 +53,14 @@ alignment = 1
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="ShopItem1" parent="HBoxContainer/VBoxContainer/Fruits" unique_id=920320616 instance=ExtResource("2_no236")]
+[node name="Fruit1" parent="HBoxContainer/VBoxContainer/Fruits" unique_id=920320616 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 3
 fruit_resource = ExtResource("4_nxcqm")
 
-[node name="ShopItem2" parent="HBoxContainer/VBoxContainer/Fruits" unique_id=1117760780 instance=ExtResource("2_no236")]
+[node name="Fruit2" parent="HBoxContainer/VBoxContainer/Fruits" unique_id=1117760780 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 3
 fruit_resource = ExtResource("4_nxcqm")
@@ -75,11 +80,13 @@ layout_mode = 2
 alignment = 1
 
 [node name="Candy1" parent="HBoxContainer/VBoxContainer/Candy" unique_id=647207142 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 5
 consumable_resource = ExtResource("7_foht7")
 
 [node name="Candy2" parent="HBoxContainer/VBoxContainer/Candy" unique_id=1942722130 instance=ExtResource("2_no236")]
+unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 5
 consumable_resource = ExtResource("7_foht7")

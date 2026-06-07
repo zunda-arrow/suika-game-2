@@ -7,8 +7,9 @@
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_mcq3o")
-expand_mode = null
 
 [node name="DragableTextureRect" parent="." unique_id=1472133254 instance=ExtResource("1_d44ro")]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 13
+expand_mode = 0

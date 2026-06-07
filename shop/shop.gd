@@ -1,8 +1,6 @@
 extends Control
 
-signal upgrade_picked(tier: int, fruit: FruitResouce)
-
-var curr_upgrade_hovered = -1
+signal upgrade_picked(shop_item: Upgrade)
 
 var dragable_sprite = preload("res://include/dragable_sprite/DragableTextureRect.tscn")
 var upgrade_texture_rects: Array[DragableTextureRect] = []
@@ -12,11 +10,21 @@ class Upgrade:
 	var ball: FruitResouce
 
 func _ready() -> void:
-	show_upgrade_list([
-		new_ball_upgrade(R.Fruits["default"]),
-		new_ball_upgrade(R.Fruits["bomb"]),
-		new_ball_upgrade(R.Fruits["bomb"]),
-	])
+	for i in [
+		%Toy1,
+		%Toy2,
+		%Toy3,
+		%Fruit1,
+		%Fruit2,
+		%Candy1,
+		%Candy2,
+	]:
+		i.connect("gui_input", func(input: InputEvent):
+			if input.is_action("Click") and input.is_pressed():
+				upgrade_picked.emit(i)
+			if input.is_action("Click") and input.is_released():
+				i.reset()
+			)
 
 func new_ball_upgrade(ball) -> Upgrade:
 	var u = Upgrade.new()
@@ -26,29 +34,3 @@ func new_ball_upgrade(ball) -> Upgrade:
 
 func show_upgrade_list(upgrades: Array[Upgrade]):
 	return
-	shop_items = upgrades
-	
-	for i in range(len(upgrades)):
-		var u: DragableTextureRect = dragable_sprite.instantiate()
-
-		if upgrades[i].ball != null:
-			pass
-
-		u.drag_ended.connect(drag_ended(i))
-		$HBoxContainer.add_child(u)
-		u.texture = upgrades[i].ball.texture
-		upgrade_texture_rects.push_back(u)
-
-func drag_ended(i):
-	return func(_end_pos):
-		if curr_upgrade_hovered < 0:
-			upgrade_texture_rects[i].reset()
-			return
-
-		# Otherwise we pick the upgrade
-		upgrade_picked.emit(i, shop_items[i].ball)
-		upgrade_texture_rects[i].queue_free()
-		upgrade_texture_rects[i] = null
-
-func _on_upgrades_list_upgrade_hovered(hovered: int) -> void:
-	curr_upgrade_hovered = hovered
