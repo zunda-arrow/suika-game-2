@@ -29,3 +29,11 @@ func _on_v_box_container_focus_exited() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("Click") and get_global_rect().has_point(get_global_mouse_position()):
 		item_dropped.emit()
+
+func set_resource(resource):
+	if item_type == ItemType.Fruit:
+		%ShopItem.fruit_resource = resource
+	if item_type == ItemType.Toy:
+		%ShopItem.toy_resource = resource
+	if item_type == ItemType.Consumable:
+		%ShopItem.consumable_resource = resource

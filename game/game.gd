@@ -55,8 +55,8 @@ func drop_item(item_box, t):
 		return
 	currently_picked_upgrade = null
 	
-	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:
-		print("upgrade picked")
+	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:		
+		item_box.set_resource(upgrade.fruit_resource)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
@@ -268,5 +268,5 @@ func after_score_capped_reached():
 	%Shop.show()
 
 
-func _on_shop_upgrade_picked(upgrade) -> void:
-	currently_picked_upgrade = upgrade
+func _on_shop_upgrade_picked(shop_item) -> void:
+	currently_picked_upgrade = shop_item

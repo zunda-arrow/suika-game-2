@@ -62,24 +62,6 @@ position = Vector2(217, 149)
 
 [node name="EnemyBalls" type="Node2D" parent="." unique_id=846633806]
 
-[node name="Consumable" type="Label" parent="." unique_id=1571869060]
-offset_left = 1397.0
-offset_top = 890.0
-offset_right = 1814.0
-offset_bottom = 1061.0
-theme_override_font_sizes/font_size = 40
-text = "Consumable (Press C to use at mouse cursor)"
-autowrap_mode = 2
-
-[node name="Consumable2" type="Label" parent="." unique_id=217787962]
-offset_left = 962.0
-offset_top = 893.0
-offset_right = 1379.0
-offset_bottom = 1064.0
-theme_override_font_sizes/font_size = 40
-text = "Empty"
-autowrap_mode = 2
-
 [node name="TurnQueue" parent="." unique_id=1915177195 instance=ExtResource("2_qdja7")]
 unique_name_in_owner = true
 position = Vector2(963, 599)
@@ -106,27 +88,36 @@ offset_bottom = 581.0
 [node name="Upgrade1" parent="UpgradesList" unique_id=1174276015 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
-item_type = 0
 
 [node name="Upgrade2" parent="UpgradesList" unique_id=1248799882 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
-item_type = 0
 
 [node name="Upgrade3" parent="UpgradesList" unique_id=566278513 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
-item_type = 0
 
 [node name="Upgrade4" parent="UpgradesList" unique_id=330759668 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
-item_type = 0
 
 [node name="Upgrade5" parent="UpgradesList" unique_id=1169942106 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
-item_type = 0
+
+[node name="Consumables" type="VBoxContainer" parent="." unique_id=2018355545]
+offset_left = 1091.0
+offset_top = 135.0
+offset_right = 1178.0
+offset_bottom = 586.0
+
+[node name="Consumable1" parent="Consumables" unique_id=731750659 instance=ExtResource("6_wmqhs")]
+layout_mode = 2
+item_type = 2
+
+[node name="Consumable2" parent="Consumables" unique_id=1373599833 instance=ExtResource("6_wmqhs")]
+layout_mode = 2
+item_type = 2
 
 [node name="ScoreBar" type="ProgressBar" parent="." unique_id=489478777]
 unique_name_in_owner = true

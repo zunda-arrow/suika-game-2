@@ -11,6 +11,7 @@ extends Control
 			return
 		fruit_resource = val
 		item_type = ItemType.Fruit
+		_setup()
 	get():
 		return fruit_resource
 
@@ -20,6 +21,7 @@ extends Control
 			return
 		toy_resource = val
 		item_type = ItemType.Toy
+		_setup()
 	get():
 		return toy_resource
 
@@ -29,6 +31,7 @@ extends Control
 			return
 		consumable_resource = val
 		item_type = ItemType.Consumable
+		_setup()
 	get():
 		return consumable_resource
 
@@ -48,7 +51,7 @@ func reset():
 
 func _setup():
 	%DragableTextureRect.expand_mode = expand_mode
-	
+
 	if fruit_resource != null:
 		%DragableTextureRect.texture = fruit_resource.texture
 		%DragableTextureRect.scale = Vector2(128., 128.) / fruit_resource.texture.get_size()
