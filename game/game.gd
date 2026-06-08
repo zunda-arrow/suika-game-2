@@ -48,7 +48,13 @@ func drop_item(item_box, t):
 	
 	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:
 		item_box.set_resource(upgrade.fruit_resource)
-
+		
+	for fruit in $Balls.get_children():
+		# This code definitely forces fruits to be stateless
+		# But that should be a requirement anyway
+		fruit.r = get_fruit_resource(fruit.size).new()
+		
+		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
 		var x = get_global_mouse_position().x
