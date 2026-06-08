@@ -37,3 +37,11 @@ func set_resource(resource):
 		%ShopItem.toy_resource = resource
 	if item_type == ItemType.Consumable:
 		%ShopItem.consumable_resource = resource
+
+func get_resource():
+	if item_type == ItemType.Fruit:
+		return %ShopItem.fruit_resource
+	if item_type == ItemType.Toy:
+		return %ShopItem.toy_resource
+	if item_type == ItemType.Consumable:
+		return %ShopItem.consumable_resource

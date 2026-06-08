@@ -10,16 +10,7 @@ var turn_number = 1
 
 var required_score = 100
 
-var fruits = [
-	R.Fruits["default"],
-	R.Fruits["default"],
-	R.Fruits["default"],
-	R.Fruits["default"],
-	R.Fruits["bomb"],
-]
-
 var currently_picked_upgrade = null
-
 
 var score: int:
 	set(val):
@@ -55,14 +46,17 @@ func drop_item(item_box, t):
 		return
 	currently_picked_upgrade = null
 	
-	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:		
+	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:
 		item_box.set_resource(upgrade.fruit_resource)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
-		# You can not drop fruits while the shop is open
-		if %Shop.visible:
+		var x = get_global_mouse_position().x
+		if x < %Left.position.x:
 			return
+		if x > %Right.position.x:
+			return
+		
 		if turn_queue[0] not in [
 			TurnQueueOptions.Fruit0,
 			TurnQueueOptions.Fruit1,
@@ -75,13 +69,7 @@ func _input(event: InputEvent) -> void:
 		waiting_for_turn_to_end = true
 		var fruit = turn_queue.pop_at(0)
 		%TurnQueue.dispay_turns(turn_queue)
-		
-		var x = get_global_mouse_position().x
-		if x < %Left.position.x:
-			x = %Left.position.x
-		if x > %Right.position.x:
-			x = %Right.position.x
-		
+
 		var y = 100
 		
 		var b: PlayerBall = ball.instantiate()
@@ -93,10 +81,10 @@ func _input(event: InputEvent) -> void:
 		
 		if fruit == TurnQueueOptions.Fruit0:
 			b.size = 0
-			b.r = fruits[0].new()
+			b.r = get_fruit_resource(0).new()
 		if fruit == TurnQueueOptions.Fruit1:
 			b.size = 1
-			b.r = fruits[1].new()
+			b.r = get_fruit_resource(1).new()
 
 func get_fruits():
 	return $Balls.get_children()
@@ -113,10 +101,10 @@ func spawn_enemy():
 	b.position = Vector2(x, y)
 
 func _on_merge(b: PlayerBall, size: int):
-	b.r = fruits[size].new()
+	b.r = get_fruit_resource(size).new()
 	
 	await create_attack_from_fruit(b)
-	
+
 	for fruit: PlayerBall in get_fruits():
 		await fruit.r.behavior.passive(self, fruit)
 	
@@ -267,6 +255,17 @@ func after_score_capped_reached():
 	# Show shop
 	%Shop.show()
 
+func get_fruit_resource(n):
+	if n == 0:
+		return %Upgrade1.get_resource()
+	if n == 1:
+		return %Upgrade2.get_resource()
+	if n == 2:
+		return %Upgrade3.get_resource()
+	if n == 3:
+		return %Upgrade4.get_resource()
+	if n == 4:
+		return %Upgrade5.get_resource()
 
 func _on_shop_upgrade_picked(shop_item) -> void:
 	currently_picked_upgrade = shop_item

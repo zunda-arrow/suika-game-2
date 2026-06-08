@@ -52,11 +52,11 @@ shape = SubResource("RectangleShape2D_3ibn1")
 
 [node name="Right" type="Node2D" parent="." unique_id=823126482]
 unique_name_in_owner = true
-position = Vector2(844, 153)
+position = Vector2(904, 151)
 
 [node name="Left" type="Node2D" parent="." unique_id=895754788]
 unique_name_in_owner = true
-position = Vector2(217, 149)
+position = Vector2(173, 150)
 
 [node name="Balls" type="Node2D" parent="." unique_id=657216197]
 
