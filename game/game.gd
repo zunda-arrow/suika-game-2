@@ -4,6 +4,7 @@ class_name Game
 
 var ball = preload("res://Balls/PlayerBall.tscn")
 var enemy_ball = preload("res://Balls/EnemyBall.tscn")
+var AttackScene = preload("res://Balls/Attack.tscn")
 
 var turn_queue = []
 var turn_number = 1
@@ -140,9 +141,7 @@ func _on_merge(b: PlayerBall, size: int):
 			continue
 		if ball == b:
 			continue
-		create_attack_from_fruit(ball)
-		
-		await get_tree().create_timer(.1).timeout
+		await create_attack_from_fruit(ball)
 
 func create_attack_from_fruit(b: PlayerBall):
 	b.flash()
@@ -165,19 +164,29 @@ func create_attack_from_fruit(b: PlayerBall):
 	
 	var d = BaseDamage.get_damage(b.size) ** 2
 
+	var target
 	if b.r.target_type == FruitResouce.FruitTarget.Random:
-		enemies.pick_random().damage(d)
+		target = enemies.pick_random()
 	if b.r.target_type == FruitResouce.FruitTarget.Strongest:
-		enemies[strongest].damage(d)
+		target = enemies[strongest]
 	if b.r.target_type == FruitResouce.FruitTarget.Weakest:
-		enemies[weakest].damage(d)
+		target = enemies[weakest]
 
 	score += 5
 	
-	await get_tree().create_timer(.1).timeout
+	var attack = AttackScene.instantiate()
+	attack.one_shot = true
+	%AttackParticles.add_child(attack)
+	attack.position = b.global_position
+	attack.aim_at = target
+	await attack.hit_the_target
 
+	if target != null:
+		target.damage(d)
+	
 func _process(_delta: float) -> void:
 	position_ball_marker()
+	update_attack_particles()
 	
 	var should_end_turn = true
 	var are_all_stopped = true
@@ -272,6 +281,14 @@ func get_fruit_resource(n):
 		return %Upgrade4.get_resource()
 	if n == 4:
 		return %Upgrade5.get_resource()
+
+func update_attack_particles():
+	# If a particle loses a target, right now we will pick a new one
+	# This needs to be redone to retarget properly, somehow
+	for particle in %AttackParticles.get_children():
+		if particle.aim_at == null:
+			particle.aim_at = $EnemyBalls.get_children().pick_random()
+
 
 func _on_shop_upgrade_picked(shop_item) -> void:
 	currently_picked_upgrade = shop_item

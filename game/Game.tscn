@@ -139,4 +139,7 @@ offset_bottom = 464.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="AttackParticles" type="Node2D" parent="." unique_id=57199693]
+unique_name_in_owner = true
+
 [connection signal="upgrade_picked" from="Shop" to="." method="_on_shop_upgrade_picked"]
