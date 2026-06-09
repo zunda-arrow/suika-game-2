@@ -3,18 +3,19 @@
 [ext_resource type="Script" uid="uid://dnoxmo6kto86y" path="res://game/floating_text.gd" id="1_x5r66"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eo2dw"]
-font_size = 50
-outline_size = 5
+font_size = 80
+outline_size = 15
+outline_color = Color(0.0016324722, 7.610675e-07, 0.01517361, 1)
 
 [node name="FlavorText" type="Node2D" unique_id=1869625816]
 z_index = 10
 script = ExtResource("1_x5r66")
 
 [node name="Label" type="Label" parent="." unique_id=1039582931]
-offset_left = -155.0
-offset_top = -42.0
-offset_right = 212.0
-offset_bottom = 27.0
+offset_left = -198.0
+offset_top = -60.0
+offset_right = 390.0
+offset_bottom = 50.0
 size_flags_horizontal = 4
 text = "Text Goes Here"
 label_settings = SubResource("LabelSettings_eo2dw")
