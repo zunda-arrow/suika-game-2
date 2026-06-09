@@ -7,6 +7,8 @@ extends Node2D
 @export var speed = 500
 @export var one_shot = true
 
+@export var pixel_speed = 10
+
 var one_shot_and_hit_the_target = false
 
 signal hit_the_target
@@ -54,18 +56,22 @@ func _process(delta: float) -> void:
 	var curve: Curve2D = $Path2D.get_curve()
 	var end_point = curve.sample(0, projectile_percent)
 
-	points.append(end_point)
-	points.append(curve.sample(0, projectile_percent - .01))
-	points.append(curve.sample(0, projectile_percent - .02))
-	points.append(curve.sample(0, projectile_percent - .03))
-	points.append(curve.sample(0, projectile_percent - .04))
-	points.append(curve.sample(0, projectile_percent - .05))
-	points.append(curve.sample(0, projectile_percent - .06))
-	points.append(curve.sample(0, projectile_percent - .07))
-	points.append(curve.sample(0, projectile_percent - .08))
-	points.append(curve.sample(0, projectile_percent - .09))
+	var length = curve.get_baked_length()
+	var multiplier = pixel_speed / length
 
-	projectile_percent += delta
+	points.append(end_point)
+	points.append(curve.sample(0, projectile_percent - multiplier))
+	points.append(curve.sample(0, projectile_percent - 2 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 3 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 4 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 5 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 6 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 7 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 8 * multiplier))
+	points.append(curve.sample(0, projectile_percent - 9 * multiplier))
+
+	# It should take more time to go through a longer path
+	projectile_percent += delta * multiplier * 100
 	%Projectile.points = points
 
 	
