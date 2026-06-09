@@ -20,9 +20,6 @@ func _process(delta: float) -> void:
 		queue_free()
 		return
 
-	if not Engine.is_editor_hint():
-		pass
-
 	if projectile_percent > 1:
 		if one_shot:
 			one_shot_and_hit_the_target = true
@@ -47,10 +44,12 @@ func _process(delta: float) -> void:
 	var tan_arrival = -end.x + sqrt(end.x ** 2 + 4 * a_arrival * (y + a_arrival)) / (2 * a_arrival)
 	var arrival = atan(tan_arrival)
 	
-	$Path2D.curve.set_point_out(0, Vector2i(cos(launch) * speed,sin(launch) * speed))
-	$Path2D.curve.set_point_in(1, Vector2i(cos(arrival) * speed,sin(arrival) * speed))
-
-	$Sprite2D.position = end
+	var flip = 1
+	if end.x < 0:
+		flip = -1
+	
+	$Path2D.curve.set_point_out(0, Vector2i(cos(launch) * speed,sin(launch) * speed * flip))
+	$Path2D.curve.set_point_in(1, Vector2i(cos(arrival) * speed,sin(arrival) * speed * flip))
 	
 	var points = PackedVector2Array()
 	var curve: Curve2D = $Path2D.get_curve()

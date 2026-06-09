@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_xo8i1"]
 _data = {
-"points": PackedVector2Array(10, 10, 1, -499, 0, 0, 1, -499, -1, 365.9, 300, 100)
+"points": PackedVector2Array(10, 10, 2, -499, 0, 0, 2, -499, -1, 365.9, 218, 136)
 }
 point_count = 2
 
@@ -19,20 +19,19 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Attack" type="Node2D" unique_id=1884355024 node_paths=PackedStringArray("aim_at")]
 script = ExtResource("1_n6wg0")
 aim_at = NodePath("Sprite2D")
-one_shot = null
+one_shot = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=463653812]
 visible = false
-position = Vector2(300, 100)
+position = Vector2(218, 136)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xo8i1")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=760331249]
-visible = false
 curve = SubResource("Curve2D_xo8i1")
 
 [node name="Projectile" type="Line2D" parent="." unique_id=478369129]
 unique_name_in_owner = true
-points = PackedVector2Array(115.3901, -326.6407, 110.37694, -325.3962, 105.40585, -323.7444, 100.48224, -321.68332, 95.61152, -319.2113, 90.799095, -316.32645, 86.050415, -313.02707, 81.37088, -309.31116, 76.76589, -305.17712, 72.24089, -300.623)
+points = PackedVector2Array(137.20424, -279.36636, 133.38126, -284.50952, 129.52992, -289.23773, 125.65479, -293.54803, 121.76039, -297.43765, 117.85126, -300.90378, 113.931885, -303.94357, 110.00686, -306.55426, 106.08063, -308.73294, 102.15778, -310.4768)
 width_curve = SubResource("Curve_xo8i1")
 gradient = SubResource("Gradient_xo8i1")
