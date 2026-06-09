@@ -22,7 +22,11 @@ func _process(_delta: float) -> void:
 	var tan_arrival = -end.x + sqrt(end.x ** 2 + 4 * a_arrival * (y + a_arrival)) / (2 * a_arrival)
 	var arrival = atan(tan_arrival)
 	
-	$Path2D.curve.set_point_out(0, Vector2i(cos(launch) * speed,sin(launch) * speed))
-	$Path2D.curve.set_point_in(1, Vector2i(cos(arrival) * speed,sin(arrival) * speed))
+	var sign = 1
+	if (end.x < start.x):
+		sign = -1
+	
+	$Path2D.curve.set_point_out(0, Vector2i(cos(launch) * sign * speed,sin(launch) * sign * speed))
+	$Path2D.curve.set_point_in(1, Vector2i(cos(arrival) * sign * speed,sin(arrival) * sign * speed))
 
 	$Sprite2D.position = end
