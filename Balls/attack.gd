@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 	if projectile_percent > 1:
 		if one_shot:
 			one_shot_and_hit_the_target = true
+			hide()
 		hit_the_target.emit()
 		projectile_percent = 0
 

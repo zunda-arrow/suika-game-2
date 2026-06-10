@@ -3,7 +3,7 @@ class_name FlavorText
 
 var opacity = 1
 var initial_up_velocity = -500
-var x_speed = randi_range(-200, 200)
+var x_speed = randi_range(-50, 50)
 
 func _ready() -> void:
 	$Label.label_settings = $Label.label_settings.duplicate()
