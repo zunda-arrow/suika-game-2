@@ -4,6 +4,9 @@ class_name PlayerBall
 
 signal on_merge(size: int)
 
+var disable_double_merge_s = .025
+var merge_disabled_timer = 0
+
 var r: FruitResouce.Fruit:
 	set(val):
 		if val == null:
@@ -21,7 +24,10 @@ func _ready() -> void:
 	super._ready()
 	add_to_group("player-balls")
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
+	merge_disabled_timer -= delta
+	print(merge_disabled_timer)
+
 	for body in self.get_colliding_bodies():
 		collide_with_body(body)
 
@@ -38,6 +44,8 @@ func collide_with_body(body: PhysicsBody2D):
 		return
 	if body.size != size:
 		return
+	if merge_disabled_timer > 0 or body.merge_disabled_timer > 0:
+		return
 
 	var new_pos = (position + body.position) / 2
 	var new_velocity = (linear_velocity + body.linear_velocity) / 2
@@ -51,6 +59,8 @@ func collide_with_body(body: PhysicsBody2D):
 
 	body.queue_free()
 	on_merge.emit(size)
+	
+	merge_disabled_timer = disable_double_merge_s
 
 
 func _on_on_size_change(old_size: int, new_size: int) -> void:
