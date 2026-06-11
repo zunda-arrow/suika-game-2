@@ -26,7 +26,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	merge_disabled_timer -= delta
-	print(merge_disabled_timer)
 
 	for body in self.get_colliding_bodies():
 		collide_with_body(body)

@@ -50,12 +50,6 @@ func drop_item(item_box, t):
 	if t == "fruit" and upgrade.item_type == upgrade.ItemType.Fruit:
 		item_box.set_resource(upgrade.fruit_resource)
 		
-	for fruit in $Balls.get_children():
-		# This code definitely forces fruits to be stateless
-		# But that should be a requirement anyway
-		fruit.r = get_fruit_resource(fruit.size).new()
-		
-		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
 		var x = get_global_mouse_position().x
@@ -251,8 +245,7 @@ func position_ball_marker():
 			if highest_ball == null:
 				highest_ball = b
 			if b.position.y > highest_ball.position.y:
-				highest_ball = b 
-
+				highest_ball = b
 
 	var highest_pos = Vector2(get_local_mouse_position().x, 931 - 26)
 	var radius = 1
@@ -269,6 +262,10 @@ func after_score_capped_reached():
 	score = 0
 	# Show shop
 	%Shop.show()
+	
+	for fruit in get_fruits():
+		if fruit.size < 2:
+			fruit.queue_free()
 
 func get_fruit_resource(n):
 	if n == 0:
