@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://rw86vfglswl4"]
+
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_lh4ei"]
+[ext_resource type="Texture2D" uid="uid://d0n7vm5pxonaq" path="res://assets/apple.png" id="2_lh4ei"]
+
+[resource]
+script = ExtResource("1_lh4ei")
+fruit_name = "Apple"
+fruit_description = "Pop 5"
+texture = ExtResource("2_lh4ei")
+damage = 5
+hits = 1
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

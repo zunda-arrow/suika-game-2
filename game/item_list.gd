@@ -8,6 +8,8 @@ var hovered = false
 
 @export var width: int
 
+@export var default_resource: Resource
+
 @export var item_type: ItemType
 enum ItemType {
 	Fruit,
@@ -17,6 +19,9 @@ enum ItemType {
 
 func _ready() -> void:
 	$VBoxContainer.custom_minimum_size.x = width
+	
+	if default_resource != null:
+		set_resource(default_resource)
 
 
 func _on_v_box_container_focus_entered() -> void:

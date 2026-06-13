@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FruitResouce" format=3 uid="uid://daqoc76lsclt"]
+
+[ext_resource type="Script" uid="uid://bf1ebyk1m1m4a" path="res://resources/fruit.gd" id="1_83lfg"]
+[ext_resource type="Texture2D" uid="uid://ctpd5fe22pvo7" path="res://assets/strawberry.png" id="2_83lfg"]
+
+[resource]
+script = ExtResource("1_83lfg")
+fruit_name = "Strawberry"
+fruit_description = "Pop 3"
+texture = ExtResource("2_83lfg")
+damage = 3
+hits = 1
+metadata/_custom_type_script = "uid://bf1ebyk1m1m4a"

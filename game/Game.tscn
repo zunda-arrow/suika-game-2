@@ -4,8 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bx50nkr6ly8gl" path="res://game/TurnQueue.tscn" id="2_qdja7"]
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_m71xk"]
 [ext_resource type="Texture2D" uid="uid://2x63rwsh7in0" path="res://assets/shroom.png" id="4_i75et"]
+[ext_resource type="Resource" uid="uid://2a23mmmitcdf" path="res://resources/fruits/cherry.tres" id="6_1vmna"]
 [ext_resource type="PackedScene" uid="uid://5f3u2fe5dcrv" path="res://game/ItemList.tscn" id="6_wmqhs"]
+[ext_resource type="Resource" uid="uid://daqoc76lsclt" path="res://resources/fruits/strawberry.tres" id="7_wmqhs"]
+[ext_resource type="Resource" uid="uid://rw86vfglswl4" path="res://resources/fruits/apple.tres" id="8_4yavt"]
 [ext_resource type="PackedScene" uid="uid://dy1snehx3kp86" path="res://shop/Shop.tscn" id="8_wmqhs"]
+[ext_resource type="Resource" uid="uid://b3lap0mhld55" path="res://resources/fruits/pear.tres" id="9_qv7dg"]
+[ext_resource type="Resource" uid="uid://dpwx01voryugr" path="res://resources/fruits/orange.tres" id="10_5a4rm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ibn1"]
 size = Vector2(775, 26)
@@ -64,7 +69,7 @@ position = Vector2(173, 150)
 
 [node name="TurnQueue" parent="." unique_id=1915177195 instance=ExtResource("2_qdja7")]
 unique_name_in_owner = true
-position = Vector2(963, 599)
+position = Vector2(962, 716)
 
 [node name="Pointer" type="Sprite2D" parent="." unique_id=1384657455]
 material = SubResource("CanvasItemMaterial_m71xk")
@@ -74,7 +79,6 @@ texture = ExtResource("3_m71xk")
 
 [node name="NextEnemy" type="Sprite2D" parent="." unique_id=2063397246]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-151.80151, -147)
 scale = Vector2(0.26130652, 0.26130652)
 texture = ExtResource("4_i75et")
@@ -88,20 +92,29 @@ offset_bottom = 581.0
 [node name="Upgrade1" parent="UpgradesList" unique_id=1174276015 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
+default_resource = ExtResource("6_1vmna")
 
 [node name="Upgrade2" parent="UpgradesList" unique_id=1248799882 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
+default_resource = ExtResource("7_wmqhs")
 
 [node name="Upgrade3" parent="UpgradesList" unique_id=566278513 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
+default_resource = ExtResource("8_4yavt")
 
 [node name="Upgrade4" parent="UpgradesList" unique_id=330759668 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
+default_resource = ExtResource("9_qv7dg")
 
 [node name="Upgrade5" parent="UpgradesList" unique_id=1169942106 instance=ExtResource("6_wmqhs")]
+unique_name_in_owner = true
+layout_mode = 2
+default_resource = ExtResource("10_5a4rm")
+
+[node name="Upgrade6" parent="UpgradesList" unique_id=1021212444 instance=ExtResource("6_wmqhs")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -143,4 +156,5 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 z_index = 1
 
+[connection signal="score_cap_reached" from="." to="." method="_on_score_cap_reached"]
 [connection signal="upgrade_picked" from="Shop" to="." method="_on_shop_upgrade_picked"]

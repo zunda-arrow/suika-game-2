@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Game
 
+signal score_cap_reached
+
 var ball = preload("res://Balls/PlayerBall.tscn")
 var enemy_ball = preload("res://Balls/EnemyBall.tscn")
 var AttackScene = preload("res://Balls/Attack.tscn")
@@ -20,7 +22,7 @@ var score: int:
 		%ScoreBar.value = float(val) / float(required_score)
 		
 		if score >= required_score:
-			after_score_capped_reached()
+			score_cap_reached.emit()
 	get():
 		return score
 
@@ -36,6 +38,7 @@ func _ready() -> void:
 		%Upgrade3,
 		%Upgrade4,
 		%Upgrade5,
+		%Upgrade6,
 	]:
 		item_box.connect("item_dropped", func():
 			drop_item(item_box, "fruit")
@@ -82,10 +85,10 @@ func _input(event: InputEvent) -> void:
 		
 		if fruit == TurnQueueOptions.Fruit0:
 			b.size = 0
-			b.r = get_fruit_resource(0).new()
+			b.r = get_fruit_resource_from_tier(0).new()
 		if fruit == TurnQueueOptions.Fruit1:
 			b.size = 1
-			b.r = get_fruit_resource(1).new()
+			b.r = get_fruit_resource_from_tier(1).new()
 
 func get_fruits():
 	return $Balls.get_children()
@@ -102,7 +105,7 @@ func spawn_enemy():
 	b.position = Vector2(x, y)
 
 func _on_merge(b: PlayerBall, size: int):
-	b.r = get_fruit_resource(size).new()
+	b.r = get_fruit_resource_from_tier(size).new()
 	
 	await create_attack_from_fruit(b)
 
@@ -156,7 +159,7 @@ func create_attack_from_fruit(b: PlayerBall):
 		if enemies[i].size > enemies[strongest].size:
 			strongest = i
 	
-	var d = BaseDamage.get_damage(b.size) ** 2
+	var d = b.r.damage
 
 	var target
 	if b.r.target_type == FruitResouce.FruitTarget.Random:
@@ -258,7 +261,8 @@ func position_ball_marker():
 	
 	$Pointer.position = Vector2(x, highest_pos.y - y)
 
-func after_score_capped_reached():
+
+func _on_score_cap_reached() -> void:
 	score = 0
 	# Show shop
 	%Shop.show()
@@ -267,7 +271,7 @@ func after_score_capped_reached():
 		if fruit.size < 2:
 			fruit.queue_free()
 
-func get_fruit_resource(n):
+func get_fruit_resource_from_tier(n):
 	if n == 0:
 		return %Upgrade1.get_resource()
 	if n == 1:
@@ -278,6 +282,8 @@ func get_fruit_resource(n):
 		return %Upgrade4.get_resource()
 	if n == 4:
 		return %Upgrade5.get_resource()
+	if n == 4:
+		return %Upgrade6.get_resource()
 
 func update_attack_particles():
 	# If a particle loses a target, right now we will pick a new one
